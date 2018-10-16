@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Models;
+
+use App\User;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+
+class Post extends Model
+{
+    use Notifiable;
+
+    protected $fillable = [
+        'post_id', 'image', 'title', 'body', 'published', 'views'
+    ];
+
+    protected $dates = [
+        'created_at', 'updated_at'
+    ];
+
+    protected $casts = [
+        'published' => 'boolean'
+    ];
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function chapters()
+    {
+        return $this->hasMany(Post::class, 'post_id');
+    }
+
+    public function story()
+    {
+        return $this->belongsTo(Post::class, 'post_id');
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+}
