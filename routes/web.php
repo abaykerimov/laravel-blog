@@ -1,5 +1,7 @@
 <?php
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +25,8 @@ Route::get('/admin', function () {
 Route::get('/admin/posts', function () {
     return view('admin.posts.list');
 })->name('admin.posts.list');
+
+
 Route::get('test', function () {
     dd(DB::table('migrations')->get());
 });

@@ -1,7 +1,9 @@
 @extends('site.layouts.layout')
 
 @section('content')
+    {{--<post-list></post-list>--}}
     <div class="col-12 col-lg-9">
+
         <div class="content-wrap">
             <header class="entry-header">
                 <div class="posted-date">
@@ -11,15 +13,15 @@
                 <h2 class="entry-title">Test</h2>
 
                 <div class="tags-links">
-                    <a href="#">#winter</a>
-                    <a href="#">#love</a>
-                    <a href="#">#snow</a>
-                    <a href="#">#january</a>
+                    <a href="#">#test</a>
+                    <a href="#">#test</a>
+                    <a href="#">#test</a>
+                    <a href="#">#test</a>
                 </div><!-- .tags-links -->
             </header><!-- .entry-header -->
 
             <figure class="featured-image">
-                <img src="{{ asset('images/layout/1.jpg') }}" alt="">
+                <img src="{{ asset('images/layout/3.jpg') }}" alt="">
             </figure><!-- .featured-image -->
 
             <div class="entry-content">
@@ -52,10 +54,10 @@
                 <h2 class="entry-title">Test</h2>
 
                 <div class="tags-links">
-                    <a href="#">#winter</a>
-                    <a href="#">#love</a>
-                    <a href="#">#snow</a>
-                    <a href="#">#january</a>
+                    <a href="#">#test</a>
+                    <a href="#">#test</a>
+                    <a href="#">#test</a>
+                    <a href="#">#test</a>
                 </div><!-- .tags-links -->
             </header><!-- .entry-header -->
 
@@ -93,10 +95,10 @@
                 <h2 class="entry-title">Test</h2>
 
                 <div class="tags-links">
-                    <a href="#">#winter</a>
-                    <a href="#">#love</a>
-                    <a href="#">#snow</a>
-                    <a href="#">#january</a>
+                    <a href="#">#test</a>
+                    <a href="#">#test</a>
+                    <a href="#">#test</a>
+                    <a href="#">#test</a>
                 </div><!-- .tags-links -->
             </header><!-- .entry-header -->
 
@@ -133,4 +135,6 @@
             </ul>
         </div>
     </div><!-- .col -->
+    @include('site.blocks.sidebar')
+
 @endsection

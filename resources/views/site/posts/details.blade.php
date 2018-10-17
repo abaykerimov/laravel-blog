@@ -13,10 +13,10 @@
                         <h2 class="entry-title">10 Tips to create a beautiful party</h2>
 
                         <div class="tags-links">
-                            <a href="#">#winter</a>
-                            <a href="#">#love</a>
-                            <a href="#">#snow</a>
-                            <a href="#">#january</a>
+                            <a href="#">#test</a>
+                            <a href="#">#test</a>
+                            <a href="#">#test</a>
+                            <a href="#">#test</a>
                         </div><!-- .tags-links -->
                     </header><!-- .entry-header -->
 

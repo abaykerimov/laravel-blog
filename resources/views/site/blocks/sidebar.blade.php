@@ -22,10 +22,10 @@
                         <h3><a href="#">Test</a></h3>
 
                         <div class="tags-links">
-                            <a href="#">#winter</a>
-                            <a href="#">#love</a>
-                            <a href="#">#snow</a>
-                            <a href="#">#january</a>
+                            <a href="#">#test</a>
+                            <a href="#">#test</a>
+                            <a href="#">#test</a>
+                            <a href="#">#test</a>
                         </div><!-- .tags-links -->
                     </header><!-- .entry-header -->
                 </div><!-- .recent-post-wrap -->
@@ -43,10 +43,10 @@
                         <h3><a href="#">Test</a></h3>
 
                         <div class="tags-links">
-                            <a href="#">#winter</a>
-                            <a href="#">#love</a>
-                            <a href="#">#snow</a>
-                            <a href="#">#january</a>
+                            <a href="#">#test</a>
+                            <a href="#">#test</a>
+                            <a href="#">#test</a>
+                            <a href="#">#test</a>
                         </div><!-- .tags-links -->
                     </header><!-- .entry-header -->
                 </div><!-- .recent-post-wrap -->
@@ -64,10 +64,10 @@
                         <h3><a href="#">Test</a></h3>
 
                         <div class="tags-links">
-                            <a href="#">#winter</a>
-                            <a href="#">#love</a>
-                            <a href="#">#snow</a>
-                            <a href="#">#january</a>
+                            <a href="#">#test</a>
+                            <a href="#">#test</a>
+                            <a href="#">#test</a>
+                            <a href="#">#test</a>
                         </div><!-- .tags-links -->
                     </header><!-- .entry-header -->
                 </div><!-- .recent-post-wrap -->
@@ -85,10 +85,10 @@
                         <h3><a href="#">Test</a></h3>
 
                         <div class="tags-links">
-                            <a href="#">#winter</a>
-                            <a href="#">#love</a>
-                            <a href="#">#snow</a>
-                            <a href="#">#january</a>
+                            <a href="#">#test</a>
+                            <a href="#">#test</a>
+                            <a href="#">#test</a>
+                            <a href="#">#test</a>
                         </div><!-- .tags-links -->
                     </header><!-- .entry-header -->
                 </div><!-- .recent-post-wrap -->
@@ -110,21 +110,4 @@
         </div><!-- .sidebar -->
     </div><!-- .col -->
 
-
-<div id="dynamic-component-demo">
-    <comp-btn
-            v-for="tab in tabs"
-            :key="tab"
-            :class="['tab-button', { active: currentTab === tab }]"
-            @click="currentTab = tab"
-    ></comp-btn>
-
-    <keep-alive>
-        <component
-                :is="currentTabComponent"
-                class="tab"
-        ></component>
-    </keep-alive>
-</div>
-<script src="{{ asset('js/vue/site/posts.js') }}"></script>
 {{--@endsection--}}

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,25 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('test', function (){
+    return response()->json(['id'=>1,'test'=>'TEST']);
+});
+
+Route::group([
+    //'prefix'     => 'post',
+    //'middleware' => ['api', 'auth:api'],
+    //'middleware' => 'api',
+    'namespace'  => 'Admin',
+], function(){
+
+    Route::apiResource('post', 'AdminPostController')->only(['index', 'store', 'show']);
+
+    Route::apiResource('documents', 'Documents\DocumentsController')->only(['index', 'update'])
+        ->parameters([
+            'documents' => 'product'
+        ]);
+    Route::apiResource('documents/tags/{tag}/documents', 'Documents\TagDocumentsRelationController')
+        ->only(['index', 'store', 'destroy']);
 });
