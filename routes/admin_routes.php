@@ -15,7 +15,6 @@ Route::group([
     'namespace'  => 'Admin',
 ], function(){
     Route::group([
-        'prefix'     => 'data',
         'namespace'  => 'Data',
     ], function(){
         Route::apiResource('post', 'PostController')->only(['index', 'store', 'show']);
