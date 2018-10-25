@@ -18,23 +18,44 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('test', function (){
-    return response()->json(['id'=>1,'test'=>'TEST']);
-});
-
 Route::group([
-    //'prefix'     => 'post',
+    'prefix'     => 'admin',
     //'middleware' => ['api', 'auth:api'],
     //'middleware' => 'api',
     'namespace'  => 'Admin',
 ], function(){
+    Route::group([
+        'prefix'     => 'data',
+        'namespace'  => 'Data',
+    ], function(){
+        Route::apiResource('post', 'PostController')->only(['index', 'store', 'show']);
 
-    Route::apiResource('post', 'AdminPostController')->only(['index', 'store', 'show']);
+        Route::apiResource('documents', 'Documents\DocumentsController')->only(['index', 'update'])
+            ->parameters([
+                'documents' => 'product'
+            ]);
+        Route::apiResource('documents/tags/{tag}/documents', 'Documents\TagDocumentsRelationController')
+            ->only(['index', 'store', 'destroy']);
+    });
+});
 
-    Route::apiResource('documents', 'Documents\DocumentsController')->only(['index', 'update'])
-        ->parameters([
-            'documents' => 'product'
-        ]);
-    Route::apiResource('documents/tags/{tag}/documents', 'Documents\TagDocumentsRelationController')
-        ->only(['index', 'store', 'destroy']);
+Route::group([
+    'prefix'     => 'site',
+    //'middleware' => ['api', 'auth:api'],
+    //'middleware' => 'api',
+    'namespace'  => 'Site',
+], function(){
+    Route::group([
+        'prefix'     => 'data',
+        'namespace'  => 'Data',
+    ], function(){
+        Route::apiResource('post', 'PostController')->only(['index', 'store', 'show']);
+
+        Route::apiResource('documents', 'Documents\DocumentsController')->only(['index', 'update'])
+            ->parameters([
+                'documents' => 'product'
+            ]);
+        Route::apiResource('documents/tags/{tag}/documents', 'Documents\TagDocumentsRelationController')
+            ->only(['index', 'store', 'destroy']);
+    });
 });

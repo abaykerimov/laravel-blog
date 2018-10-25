@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\Comment;
+use App\Models\Post;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -15,7 +17,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'is_admin',
+        'name',
+        'email',
+        'password',
     ];
 
     /**
@@ -30,4 +35,19 @@ class User extends Authenticatable
     protected $dates = [
         'created_at', 'updated_at'
     ];
+
+    public function isAdmin() {
+        return (bool)$this->is_admin;
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
 }

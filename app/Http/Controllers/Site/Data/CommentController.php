@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Site\Data;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AdminCommentController extends Controller
+class CommentController extends Controller
 {
     //
 }

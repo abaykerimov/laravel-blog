@@ -11,7 +11,12 @@ class Post extends Model
     use Notifiable;
 
     protected $fillable = [
-        'post_id', 'image', 'title', 'body', 'published', 'views'
+        'post_id',
+        'image',
+        'title',
+        'body',
+        'published',
+        'views'
     ];
 
     protected $dates = [
@@ -27,17 +32,21 @@ class Post extends Model
         return $this->title;
     }
 
-    public function chapters()
+    public function children()
     {
         return $this->hasMany(Post::class, 'post_id');
     }
 
-    public function story()
+    public function parent()
     {
         return $this->belongsTo(Post::class, 'post_id');
     }
 
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function isPublished() {
+        return (bool)$this->published;
     }
 }
