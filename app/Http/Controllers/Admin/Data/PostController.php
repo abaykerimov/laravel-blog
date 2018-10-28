@@ -10,15 +10,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $parents = Post::whereNull('post_id')->get();
-
-        $data = [];
-        $parents->each(function ($parent) {
-            $children = $parent->children;
-            $data[] = [
-                'parent' => $parent,
-            ];
-        });
+        $parents = Post::whereNull('post_id')->with('children')->get();
         return response()->json($parents);
     }
 
