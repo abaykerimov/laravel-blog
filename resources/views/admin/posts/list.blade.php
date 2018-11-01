@@ -16,8 +16,8 @@
                         <table class="table card-table table-vcenter text-nowrap">
                             <thead>
                             <tr>
-                                <th class="w-1">No.</th>
-                                <th>Invoice Subject</th>
+                                <th class="w-1">ID</th>
+                                <th>Название</th>
                                 <th>Client</th>
                                 <th>VAT No.</th>
                                 <th>Created</th>

@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Site\Data;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
+use App\Models\Post;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $posts = PostRequest::all();
+        $posts = Post::all();
         return response()->json($posts);
     }
 

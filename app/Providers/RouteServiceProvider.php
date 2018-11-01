@@ -35,12 +35,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        //$this->mapApiRoutes();
-
-        //$this->mapWebRoutes();
-
-        $this->mapSiteRoutes();
-        $this->mapAdminRoutes();
+        $this->mapApiRoutes();
+        $this->mapWebRoutes();
+        $this->mapDevRoutes();
     }
 
     /**
@@ -54,7 +51,19 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware('web')
              ->namespace($this->namespace)
-             ->group(base_path('routes/routes.php'));
+             ->group(base_path('routes/views_routes.php'));
+    }
+
+    /**
+     * Define dev routes
+     *
+     * @return void
+     */
+    protected function mapDevRoutes()
+    {
+        Route::middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/dev_routes.php'));
     }
 
     /**
@@ -69,28 +78,9 @@ class RouteServiceProvider extends ServiceProvider
         Route::prefix('api')
              ->middleware('api')
              ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
-    }
-
-    /**
-     * Define site routes
-     */
-    protected function mapSiteRoutes()
-    {
-        Route::prefix('api')
-            ->middleware('api')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/site_routes.php'));
-    }
-
-    /**
-     * Define admin routes
-     */
-    protected function mapAdminRoutes()
-    {
-        Route::prefix('api')
-            ->middleware('api')
-            ->namespace($this->namespace)
-            ->group(base_path('routes/admin_routes.php'));
+            ->group(function($router) {
+                require base_path('routes/admin_routes.php');
+                require base_path('routes/site_routes.php');
+            });
     }
 }

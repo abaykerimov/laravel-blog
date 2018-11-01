@@ -15,8 +15,29 @@ Route::group([
     'namespace'  => 'Site',
 ], function(){
     Route::group([
-        'prefix'     => 'data',
+        //'prefix'     => 'data',
         'namespace'  => 'Data',
+    ], function(){
+        Route::apiResource('post', 'PostController')->only(['index', 'store', 'show']);
+
+        Route::apiResource('documents', 'Documents\DocumentsController')->only(['index', 'update'])
+            ->parameters([
+                'documents' => 'product'
+            ]);
+        Route::apiResource('documents/tags/{tag}/documents', 'Documents\TagDocumentsRelationController')
+            ->only(['index', 'store', 'destroy']);
+    });
+});
+
+Route::group([
+    //'prefix'     => 'site',
+    //'middleware' => ['api', 'auth:api'],
+    //'middleware' => 'api',
+    'namespace'  => 'Site',
+], function(){
+    Route::group([
+        'prefix'     => 'views',
+        'namespace'  => 'views',
     ], function(){
         Route::apiResource('post', 'PostController')->only(['index', 'store', 'show']);
 
