@@ -19,3 +19,16 @@ Route::group([
 
     });
 });
+
+Route::group([
+    'prefix' => 'admin',
+    'namespace'  => 'Admin',
+], function(){
+    Route::group([
+        'namespace'  => 'Views',
+    ], function(){
+        Route::get('/posts', 'PostController@index')->name('admin.posts.index');
+        Route::get('/posts/{post}', 'PostController@show')->name('admin.posts.details');
+
+    });
+});

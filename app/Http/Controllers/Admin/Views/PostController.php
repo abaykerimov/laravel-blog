@@ -1,31 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Views;
+namespace App\Http\Controllers\Admin\Views;
 
 use App\Http\Controllers\Controller;
-use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::whereNotNull('post_id')->get();
-        return response()->json($posts);
+        return view('admin.posts.list');
     }
 
-    public function store(Post $request)
+    public function show()
     {
-
-    }
-
-    public function update()
-    {
-
-    }
-
-    public function show(Post $post)
-    {
-        return view('site.posts.details');
+        return view('admin.posts.details');
     }
 }

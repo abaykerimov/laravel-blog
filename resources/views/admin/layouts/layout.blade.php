@@ -36,8 +36,8 @@
     <!-- Input Mask Plugin -->
     <script src="{{ asset('plugins/input-mask/plugin.js') }}"></script>
 </head>
-<body class="">
-<div class="page">
+<body>
+<div class="page" id="app">
     <div class="page-main">
         @include('admin.blocks.header')
         <div class="my-3 my-md-5">
@@ -46,5 +46,8 @@
     </div>
     @include('admin.blocks.footer')
 </div>
+<script type='text/javascript' src='{{ asset('js/legacy/vue.js') }}'></script>
+<script type='text/javascript' src='{{ asset('js/legacy/axios.js') }}'></script>
+<script type='text/javascript' src='{{ asset('js/vue/admin/app.js') }}'></script>
 </body>
 </html>
