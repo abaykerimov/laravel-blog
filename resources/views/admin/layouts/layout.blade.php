@@ -18,6 +18,8 @@
     <title>Admin</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
+    <script type='text/javascript' src='{{ asset('js/legacy/vue.js') }}'></script>
+    <script type='text/javascript' src='{{ asset('js/legacy/axios.js') }}'></script>
     <script src="{{ asset('js/admin/require.min.js') }}"></script>
     <script>
         requirejs.config({
@@ -46,8 +48,6 @@
     </div>
     @include('admin.blocks.footer')
 </div>
-<script type='text/javascript' src='{{ asset('js/legacy/vue.js') }}'></script>
-<script type='text/javascript' src='{{ asset('js/legacy/axios.js') }}'></script>
 <script type='text/javascript' src='{{ asset('js/vue/admin/app.js') }}'></script>
 </body>
 </html>
