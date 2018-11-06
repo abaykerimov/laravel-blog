@@ -18,12 +18,16 @@ Route::group([
         'namespace'  => 'Data',
     ], function(){
         Route::apiResource('post', 'PostController')->only(['index', 'store', 'show']);
+    });
+});
 
-        Route::apiResource('documents', 'Documents\DocumentsController')->only(['index', 'update'])
-            ->parameters([
-                'documents' => 'product'
-            ]);
-        Route::apiResource('documents/tags/{tag}/documents', 'Documents\TagDocumentsRelationController')
-            ->only(['index', 'store', 'destroy']);
+Route::group([
+    'prefix'     => 'admin',
+    'namespace'  => 'Admin',
+], function(){
+    Route::group([
+        'namespace'  => 'Views',
+    ], function(){
+        Route::resource('posts', 'PostController');
     });
 });

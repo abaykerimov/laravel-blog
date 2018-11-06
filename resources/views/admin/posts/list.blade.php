@@ -19,4 +19,3 @@
         </div>
     </div>
 @stop
-<script type="text/javascript" href=""></script>

@@ -22,9 +22,9 @@ Route::get('/posts/{id}', function () {
 Route::get('/admin', function () {
     return view('admin.index');
 });
-Route::get('/admin/posts', function () {
-    return view('admin.posts.list');
-})->name('admin.posts.list');
+//Route::get('/admin/posts', function () {
+//    return view('admin.posts.list');
+//})->name('admin.posts.list');
 
 
 Route::get('test', function () {

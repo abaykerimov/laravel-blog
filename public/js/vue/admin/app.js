@@ -32,7 +32,7 @@ var postsComponent = Vue.component('post-list', {
                                 <th>Название</th>
                                 <th>Статус</th>
                                 <th>Дата создания</th>
-                                <th></th>
+                                <!--<th></th>-->
                                 <th></th>
                             </tr>
                             </thead>
@@ -44,14 +44,14 @@ var postsComponent = Vue.component('post-list', {
                                     <span class="status-icon bg-success"></span> Paid
                                 </td>
                                 <td v-text="child.created_at"></td>
-                                <td class="text-right">
-                                    <a href="javascript:void(0)" class="btn btn-secondary btn-sm">Manage</a>
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>
-                                    </div>
-                                </td>
+                                <!--<td class="text-right">-->
+                                    <!--<a href="javascript:void(0)" class="btn btn-secondary btn-sm">Manage</a>-->
+                                    <!--<div class="dropdown">-->
+                                        <!--<button class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown">Actions</button>-->
+                                    <!--</div>-->
+                                <!--</td>-->
                                 <td>
-                                    <a class="icon" href="javascript:void(0)">
+                                    <a class="icon" :href="'/admin/posts/' + child.id">
                                         <i class="fe fe-edit"></i>
                                     </a>
                                 </td>
@@ -66,9 +66,65 @@ var postsComponent = Vue.component('post-list', {
     `
 });
 
+var postDetailsComponent = Vue.component('post-details', {
+    props: {
+        id: {
+            type: Number,
+            required: true
+        }
+    },
+    data: function () {
+        return {
+            post: null,
+        }
+    },
+    methods: {
+        getPost() {
+            axios.get('/api/admin/post/' + this.id).then(response => {
+                this.post = response.data;
+            });
+        },
+        updatePost() {
+            axios.post('/api/admin/post/' + this.id).then(response => {
+                this.post = response.data;
+            });
+        }
+    },
+    created() {
+        this.getPost();
+    },
+    template: `
+    <div>  
+        <form v-if="post" class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Название</label>
+                            <input type="text" class="form-control" name="title" placeholder="Название рассказа" v-model="post.title">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Описание</label>
+                            <textarea class="form-control" name="description" rows="16" placeholder="Описание рассказа" v-model="post.body"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-right">
+                <div class="d-flex">
+                    <button type="submit" class="btn btn-primary ml-auto">Сохранить</button>
+                    <a href="javascript:void(0)" class="btn btn-link">Отмена</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    `
+});
+
 new Vue({
     el: '#app',
     components: {
         'post-list' : postsComponent,
+        'post-details' : postDetailsComponent,
     }
 });

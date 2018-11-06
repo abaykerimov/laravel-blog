@@ -49,5 +49,6 @@
     @include('admin.blocks.footer')
 </div>
 <script type='text/javascript' src='{{ asset('js/vue/admin/app.js') }}'></script>
+@stack('scripts')
 </body>
 </html>
