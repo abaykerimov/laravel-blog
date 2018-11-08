@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
     <script type='text/javascript' src='{{ asset('js/legacy/vue.js') }}'></script>
     <script type='text/javascript' src='{{ asset('js/legacy/axios.js') }}'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.3.4/tinymce.min.js"></script>
     <script src="{{ asset('js/admin/require.min.js') }}"></script>
     <script>
         requirejs.config({
@@ -37,6 +38,7 @@
     <script src="{{ asset('plugins/maps-google/plugin.js') }}"></script>
     <!-- Input Mask Plugin -->
     <script src="{{ asset('plugins/input-mask/plugin.js') }}"></script>
+    @stack('styles')
 </head>
 <body>
 <div class="page" id="app">

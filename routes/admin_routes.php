@@ -17,7 +17,7 @@ Route::group([
     Route::group([
         'namespace'  => 'Data',
     ], function(){
-        Route::apiResource('post', 'PostController')->only(['index', 'store', 'show']);
+        Route::apiResource('post', 'PostController');
     });
 });
 

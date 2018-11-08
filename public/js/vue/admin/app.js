@@ -84,8 +84,8 @@ var postDetailsComponent = Vue.component('post-details', {
                 this.post = response.data;
             });
         },
-        updatePost() {
-            axios.post('/api/admin/post/' + this.id).then(response => {
+        updatePost(post) {
+            axios.put('/api/admin/post/' + this.id, {params: post}).then(response => {
                 this.post = response.data;
             });
         }
@@ -94,25 +94,35 @@ var postDetailsComponent = Vue.component('post-details', {
         this.getPost();
     },
     template: `
-    <div>  
-        <form v-if="post" class="card">
+    <div v-if="post">  
+        <form class="card" method="post" @submit.prevent="">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="form-label">Название</label>
-                            <input type="text" class="form-control" name="title" placeholder="Название рассказа" v-model="post.title">
+                            <input type="text" class="form-control" 
+                                name="title" 
+                                placeholder="Название рассказа" 
+                                v-model="post.title"
+                            >
                         </div>
                         <div class="form-group">
                             <label class="form-label">Описание</label>
-                            <textarea class="form-control" name="description" rows="16" placeholder="Описание рассказа" v-model="post.body"></textarea>
+                            <textarea id="editor" class="form-control" 
+                                name="description" 
+                                rows="16" 
+                                placeholder="Описание рассказа" 
+                                v-model="post.body"
+                                v-tinymce-editor="post.body"
+                            ></textarea>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="card-footer text-right">
                 <div class="d-flex">
-                    <button type="submit" class="btn btn-primary ml-auto">Сохранить</button>
+                    <button class="btn btn-primary ml-auto" @click="updatePost(post)">Сохранить</button>
                     <a href="javascript:void(0)" class="btn btn-link">Отмена</a>
                 </div>
             </div>
@@ -121,10 +131,76 @@ var postDetailsComponent = Vue.component('post-details', {
     `
 });
 
+// tinymce directive
+Vue.directive('tinymce-editor',{
+    twoWay: true,
+    bind: function() {
+        var self = this;
+        tinymce.init({
+            selector: '#editor',
+            setup: function(editor) {
+
+                // init tinymce
+                editor.on('init', function() {
+                    tinymce.get('editor').setContent(self.value);
+                });
+
+                // when typing keyup event
+                editor.on('keyup', function() {
+
+                    // get new value
+                    var new_value = tinymce.get('editor').getContent(self.value);
+
+                    // set model value
+                    self.set(new_value)
+                });
+            }
+        });
+    },
+    update: function(newVal, oldVal) {
+        // set val and trigger event
+        $(this.el).val(newVal).trigger('keyup');
+    }
+
+});
+
+var editor_config = {
+    path_absolute : "{{ url()->to('/') }}/",
+    selector: 'textarea',
+    plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern"
+    ],
+    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
+    relative_urls: false,
+    file_browser_callback : function(field_name, url, type, win) {
+        var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
+        var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
+        var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
+        if (type == 'image') {
+            cmsURL = cmsURL + "&type=Images";
+        } else {
+            cmsURL = cmsURL + "&type=Files";
+        }
+        tinyMCE.activeEditor.windowManager.open({
+            file : cmsURL,
+            title : 'Filemanager',
+            width : x * 0.8,
+            height : y * 0.8,
+            resizable : "yes",
+            close_previous : "no"
+        });
+    }
+};
+tinymce.init(editor_config);
+
 new Vue({
     el: '#app',
     components: {
         'post-list' : postsComponent,
         'post-details' : postDetailsComponent,
+        // 'editor': Editor
     }
 });
