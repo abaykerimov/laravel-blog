@@ -75,18 +75,20 @@ var postDetailsComponent = Vue.component('post-details', {
     },
     data: function () {
         return {
-            post: null,
+            data: {},
         }
     },
     methods: {
         getPost() {
             axios.get('/api/admin/post/' + this.id).then(response => {
-                this.post = response.data;
+                this.data = response.data;
+                // console.log(this.data);
             });
         },
         updatePost(post) {
+            console.log(post);
             axios.put('/api/admin/post/' + this.id, {params: post}).then(response => {
-                this.post = response.data;
+                this.data = response.data;
             });
         }
     },
@@ -94,37 +96,82 @@ var postDetailsComponent = Vue.component('post-details', {
         this.getPost();
     },
     template: `
-    <div v-if="post">  
-        <form class="card" method="post" @submit.prevent="">
+    <div>  
+        <form class="card" method="post" @submit.prevent="updatePost(data)">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label class="form-label">Название</label>
-                            <input type="text" class="form-control" 
+                            <input class="form-control" 
                                 name="title" 
                                 placeholder="Название рассказа" 
-                                v-model="post.title"
+                                v-model="data.title"
                             >
                         </div>
                         <div class="form-group">
                             <label class="form-label">Описание</label>
                             <textarea id="editor" class="form-control" 
-                                name="description" 
+                                name="body" 
                                 rows="16" 
                                 placeholder="Описание рассказа" 
-                                v-model="post.body"
-                                v-tinymce-editor="post.body"
-                            ></textarea>
+                                v-tinymce-editor="data.body"
+                            >{{ data.body }}</textarea>
                         </div>
+                        <div class="form-group">
+                            <div class="form-label">Статус</div>
+                            <label class="custom-switch">
+                                <input type="checkbox" name="published" class="custom-switch-input" v-model="data.published">
+                                <span class="custom-switch-indicator"></span>
+                                <span class="custom-switch-description">Опубликовано</span>
+                            </label>
+                      </div>
                     </div>
                 </div>
             </div>
             <div class="card-footer text-right">
                 <div class="d-flex">
-                    <button class="btn btn-primary ml-auto" @click="updatePost(post)">Сохранить</button>
-                    <a href="javascript:void(0)" class="btn btn-link">Отмена</a>
+                    <button class="btn btn-primary ml-auto">Сохранить</button>
+                    <a href="/admin/posts" class="btn btn-link">Отмена</a>
                 </div>
+            </div>
+        </form>
+    </div>
+    `
+});
+
+var postCreateComponent = Vue.component('post-create', {
+    data: function () {
+        return {
+            data: {
+                title: ''
+            },
+        }
+    },
+    methods: {
+        addPost(data) {
+            console.log(this.data);
+            axios.post('/api/admin/post', {title: data.title}).then(response => {
+                window.location = '/admin/posts/' + response.data.id;
+            });
+        }
+    },
+    template: `
+    <div>  
+        <form method="post" @submit.prevent="addPost(data)">
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Название</label>
+                    <input type="text" class="form-control" 
+                        name="title" 
+                        placeholder="Название рассказа" 
+                        v-model="data.title"
+                    >
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary">Сохранить</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
             </div>
         </form>
     </div>
@@ -136,17 +183,21 @@ Vue.directive('tinymce-editor',{
     twoWay: true,
     bind: function() {
         var self = this;
+        console.log(self);
         tinymce.init({
-            selector: '#editor',
+            selector: 'textarea',
             setup: function(editor) {
+                // self.value = tinymce.get('editor').getContent();
 
                 // init tinymce
                 editor.on('init', function() {
                     tinymce.get('editor').setContent(self.value);
                 });
+                console.log(tinyMCE.get('editor'));
+                console.log(self.value);
 
                 // when typing keyup event
-                editor.on('keyup', function() {
+                editor.on('keyup change', function() {
 
                     // get new value
                     var new_value = tinymce.get('editor').getContent(self.value);
@@ -164,43 +215,13 @@ Vue.directive('tinymce-editor',{
 
 });
 
-var editor_config = {
-    path_absolute : "{{ url()->to('/') }}/",
-    selector: 'textarea',
-    plugins: [
-        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-        "searchreplace wordcount visualblocks visualchars code fullscreen",
-        "insertdatetime media nonbreaking save table contextmenu directionality",
-        "emoticons template paste textcolor colorpicker textpattern"
-    ],
-    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
-    relative_urls: false,
-    file_browser_callback : function(field_name, url, type, win) {
-        var x = window.innerWidth || document.documentElement.clientWidth || document.getElementsByTagName('body')[0].clientWidth;
-        var y = window.innerHeight|| document.documentElement.clientHeight|| document.getElementsByTagName('body')[0].clientHeight;
-        var cmsURL = editor_config.path_absolute + 'laravel-filemanager?field_name=' + field_name;
-        if (type == 'image') {
-            cmsURL = cmsURL + "&type=Images";
-        } else {
-            cmsURL = cmsURL + "&type=Files";
-        }
-        tinyMCE.activeEditor.windowManager.open({
-            file : cmsURL,
-            title : 'Filemanager',
-            width : x * 0.8,
-            height : y * 0.8,
-            resizable : "yes",
-            close_previous : "no"
-        });
-    }
-};
-tinymce.init(editor_config);
 
 new Vue({
     el: '#app',
     components: {
         'post-list' : postsComponent,
         'post-details' : postDetailsComponent,
+        'post-create' : postCreateComponent,
         // 'editor': Editor
     }
 });

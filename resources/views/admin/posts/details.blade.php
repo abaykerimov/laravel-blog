@@ -26,6 +26,7 @@
 
 {{--@endpush--}}
 @push('scripts')
+    {{--<script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>--}}
     <script type="text/javascript">
         var editor_config = {
             path_absolute : "{{ url()->to('/') }}/",

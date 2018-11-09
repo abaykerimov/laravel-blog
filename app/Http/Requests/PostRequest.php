@@ -13,7 +13,8 @@ class PostRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check();
+        //return auth()->check();
+        return true;
     }
 
     /**
@@ -24,8 +25,7 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'       =>  ['required', 'min:1,100'],
-            'body'        =>  ['required'],
+            'title' =>  ['required'],
         ];
     }
 }

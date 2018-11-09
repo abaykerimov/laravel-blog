@@ -26,6 +26,7 @@ class PostController extends Controller
 
     public function update(Post $post)
     {
+        dd(Input::get('params'));
         $input = Input::get('params');
         $post->title = $input['title'];
         $post->body = $input['body'];

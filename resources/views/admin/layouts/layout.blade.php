@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
     <script type='text/javascript' src='{{ asset('js/legacy/vue.js') }}'></script>
     <script type='text/javascript' src='{{ asset('js/legacy/axios.js') }}'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.3.4/tinymce.min.js"></script>
     <script src="{{ asset('js/admin/require.min.js') }}"></script>
     <script>
         requirejs.config({
@@ -30,6 +29,7 @@
     <!-- Dashboard Core -->
     <link href="{{ asset('css/admin/dashboard.css') }}" rel="stylesheet" />
     <script src="{{ asset('js/admin/dashboard.js') }}"></script>
+    <script src='https://cloud.tinymce.com/stable/tinymce.js'></script>
     <!-- c3.js Charts Plugin -->
     <link href="{{ asset('plugins/charts-c3/plugin.css') }}" rel="stylesheet" />
     <script src="{{ asset('plugins/charts-c3/plugin.js') }}"></script>

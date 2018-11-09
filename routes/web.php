@@ -19,9 +19,9 @@ Route::get('/', function () {
 Route::get('/posts/{id}', function () {
     return view('site.posts.details');
 })->name('posts.details');
-Route::get('/admin', function () {
-    return view('admin.index');
-});
+//Route::get('/admin', function () {
+//    return view('admin.index');
+//});
 //Route::get('/admin/posts', function () {
 //    return view('admin.posts.list');
 //})->name('admin.posts.list');
