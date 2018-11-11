@@ -29,15 +29,6 @@
     <!-- Dashboard Core -->
     <link href="{{ asset('css/admin/dashboard.css') }}" rel="stylesheet" />
     <script src="{{ asset('js/admin/dashboard.js') }}"></script>
-    <script src='https://cloud.tinymce.com/stable/tinymce.js'></script>
-    <!-- c3.js Charts Plugin -->
-    <link href="{{ asset('plugins/charts-c3/plugin.css') }}" rel="stylesheet" />
-    <script src="{{ asset('plugins/charts-c3/plugin.js') }}"></script>
-    <!-- Google Maps Plugin -->
-    <link href="{{ asset('plugins/maps-google/plugin.css') }}" rel="stylesheet" />
-    <script src="{{ asset('plugins/maps-google/plugin.js') }}"></script>
-    <!-- Input Mask Plugin -->
-    <script src="{{ asset('plugins/input-mask/plugin.js') }}"></script>
     @stack('styles')
 </head>
 <body>
@@ -50,6 +41,8 @@
     </div>
     @include('admin.blocks.footer')
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=cgb46t2y39y00y9slf9cgs81l747j3rihvja55fjrv47w5po"></script>
 <script type='text/javascript' src='{{ asset('js/vue/admin/app.js') }}'></script>
 @stack('scripts')
 </body>

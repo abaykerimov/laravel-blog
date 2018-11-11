@@ -18,6 +18,7 @@ Route::group([
         'namespace'  => 'Data',
     ], function(){
         Route::apiResource('post', 'PostController');
+        Route::post('post/upload', 'PostController@upload');
     });
 });
 

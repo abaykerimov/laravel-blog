@@ -16,6 +16,7 @@ class Post extends Model
         'title',
         'body',
         'published',
+        'finished',
         'views'
     ];
 
@@ -48,5 +49,9 @@ class Post extends Model
 
     public function isPublished() {
         return (bool)$this->published;
+    }
+    
+    public function isFinished() {
+        return (bool)$this->finished;
     }
 }

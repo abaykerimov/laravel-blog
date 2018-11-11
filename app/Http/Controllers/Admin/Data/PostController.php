@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -19,6 +20,7 @@ class PostController extends Controller
     {
         $post = new Post();
         $post->title = $request->title;
+        $post->post_id = $request->post_id;
         $post->save();
 
         return response()->json($post);
@@ -26,10 +28,10 @@ class PostController extends Controller
 
     public function update(Post $post)
     {
-        dd(Input::get('params'));
         $input = Input::get('params');
         $post->title = $input['title'];
         $post->body = $input['body'];
+        $post->published = $input['published'];
         $post->save();
 
         return response()->json($post);
@@ -38,5 +40,22 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return response()->json($post);
+    }
+
+    public function upload(Request $request)
+    {
+        dd($request->all());
+        if ($request->hasFile('file')) {
+            $image = $request->file('file');
+            $name  = time() . '.' . $image->getClientOriginalExtension();
+            $path  = '/images/admin/posts/';
+            $destinationPath = public_path($path);
+            $image->move($destinationPath, $name);
+
+            return response()->json([
+                'location' => $path . $name
+            ]);
+        }
+        return false;
     }
 }
