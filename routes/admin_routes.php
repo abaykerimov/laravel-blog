@@ -22,13 +22,3 @@ Route::group([
     });
 });
 
-Route::group([
-    'prefix'     => 'admin',
-    'namespace'  => 'Admin',
-], function(){
-    Route::group([
-        'namespace'  => 'Views',
-    ], function(){
-        Route::resource('posts', 'PostController');
-    });
-});

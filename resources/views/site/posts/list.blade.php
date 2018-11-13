@@ -29,19 +29,19 @@
             </div><!-- .entry-content -->
 
             <footer class="entry-footer flex flex-column flex-lg-row justify-content-between align-content-start align-lg-items-center">
-                <ul class="post-share flex align-items-center order-3 order-lg-1">
+                <div class="comments-count flex align-items-center order-1 order-lg-1 text-left">
+                    <a href="#">2 Comments</a>
+                </div><!-- .comments-count -->
+
+                <a class="read-more order-2" href="{{ url()->route('posts.details', 1) }}">Read more</a>
+
+                <ul class="post-share flex align-items-center order-3 order-lg-3 text-right">
                     <label>Share</label>
                     <li><a href="#"><i class="fa fa-vk"></i></a></li>
                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                     <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                 </ul><!-- .post-share -->
-
-                <a class="read-more order-2" href="{{ url()->route('posts.details', 1) }}">Read more</a>
-
-                <div class="comments-count order-1 order-lg-3">
-                    <a href="#">2 Comments</a>
-                </div><!-- .comments-count -->
             </footer><!-- .entry-footer -->
         </div><!-- .content-wrap -->
 
@@ -129,9 +129,9 @@
 
         <div class="pagination">
             <ul class="flex align-items-center">
-                <li class="active"><a href="#">01.</a></li>
-                <li><a href="#">02.</a></li>
-                <li><a href="#">03.</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
             </ul>
         </div>
     </div><!-- .col -->

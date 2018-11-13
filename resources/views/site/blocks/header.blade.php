@@ -51,12 +51,9 @@
                         </div><!-- .hamburger-menu -->
 
                         <ul class="flex-lg flex-lg-row justify-content-lg-center align-content-lg-center">
-                            <li class="current-menu-item"><a href="{{ config('app.url') }}">Home</a></li>
-                            <li><a href="#">features</a></li>
-                            <li><a href="#">Portfolio</a></li>
-                            <li><a href="#">blog</a></li>
-                            <li><a href="#">about me</a></li>
-                            <li><a href="#">Contact</a></li>
+                            <li class="current-menu-item"><a href="{{ config('app.url') }}">Главная</a></li>
+                            <li><a href="#">Список рассказов</a></li>
+                            <li><a href="#">About me</a></li>
                         </ul>
 
                         <div class="header-bar-social d-md-none">

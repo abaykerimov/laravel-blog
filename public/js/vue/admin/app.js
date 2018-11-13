@@ -158,23 +158,15 @@ Vue.component('post-details', {
             });
         },
         onFileChange(e) {
-            let files = e.target.files || e.dataTransfer.files;
-            if (!files.length)
-                return;
-            this.createImage(files[0]);
-        },
-        createImage(file) {
-            let reader = new FileReader();
-            let vm = this;
-            reader.onload = (e) => {
-                vm.image = e.target.result;
-            };
-            reader.readAsDataURL(file);
-            console.log(this.image);
+            this.image = e.target.files[0];
             this.upload();
         },
         upload(){
-            axios.post('/api/admin/post/upload',{image: this.image}).then(response => {
+            const config = {
+                headers: { 'content-type': 'multipart/form-data' }
+            };
+            console.log(this.image);
+            axios.post('/api/admin/post/upload', {image: this.image}, config).then(response => {
 
             });
         }

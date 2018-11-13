@@ -44,7 +44,13 @@ class PostController extends Controller
 
     public function upload(Request $request)
     {
-        dd($request->all());
+        dd(
+            $request->all(), $request->hasFile('file'),
+            $request->hasFile('image'),
+            $request->get('file'),
+            $request->get('image')
+        );
+        dd(time().'.'.$request->image->getClientOriginalExtension());
         if ($request->hasFile('file')) {
             $image = $request->file('file');
             $name  = time() . '.' . $image->getClientOriginalExtension();

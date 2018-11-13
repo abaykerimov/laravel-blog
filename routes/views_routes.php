@@ -30,5 +30,9 @@ Route::group([
         Route::get('/posts', 'PostController@index')->name('admin.posts.index');
         Route::get('/posts/{post}', 'PostController@show')->name('admin.posts.details');
 
+        Route::get('/login', 'AuthController@login')->name('admin.auth.login');
+        Route::get('/forgot', 'AuthController@forgot')->name('admin.auth.forgot');
+        Route::get('/reset', 'AuthController@reset')->name('admin.auth.reset');
+
     });
 });

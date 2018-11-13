@@ -12,8 +12,18 @@ use App\Http\Controllers\Controller;
 
 class AuthController extends Controller
 {
-    public function index()
+    public function login()
     {
         return view('admin.auth.login');
+    }
+
+    public function forgot()
+    {
+        return view('admin.auth.passwords.email');
+    }
+
+    public function reset()
+    {
+        return view('admin.auth.passwords.reset');
     }
 }

@@ -17,7 +17,7 @@
                         <div class="form-group">
                             <label class="form-label">
                                 Password
-                                <a href="forgot-password.html" class="float-right small">I forgot password</a>
+                                <a href="{{ url()->route('admin.auth.forgot') }}" class="float-right small">I forgot password</a>
                             </label>
                             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                         </div>
@@ -32,9 +32,6 @@
                         </div>
                     </div>
                 </form>
-                <div class="text-center text-muted">
-                    Don't have account yet? <a href="register.html">Sign up</a>
-                </div>
             </div>
         </div>
     </div>
