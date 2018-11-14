@@ -44,15 +44,8 @@ class PostController extends Controller
 
     public function upload(Request $request)
     {
-        dd(
-            $request->all(), $request->hasFile('file'),
-            $request->hasFile('image'),
-            $request->get('file'),
-            $request->get('image')
-        );
-        dd(time().'.'.$request->image->getClientOriginalExtension());
-        if ($request->hasFile('file')) {
-            $image = $request->file('file');
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
             $name  = time() . '.' . $image->getClientOriginalExtension();
             $path  = '/images/admin/posts/';
             $destinationPath = public_path($path);

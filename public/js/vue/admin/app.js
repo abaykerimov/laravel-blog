@@ -157,18 +157,20 @@ Vue.component('post-details', {
                 // this.data = response.data;
             });
         },
-        onFileChange(e) {
+        onImageChange(e){
             this.image = e.target.files[0];
-            this.upload();
         },
-        upload(){
+
+        upload(e) {
             const config = {
                 headers: { 'content-type': 'multipart/form-data' }
             };
-            console.log(this.image);
-            axios.post('/api/admin/post/upload', {image: this.image}, config).then(response => {
+            let formData = new FormData();
+            formData.append('image', this.image);
 
-            });
+            axios.post('/api/admin/post/upload', formData, config)
+                .catch(function (error) {
+                });
         }
     },
     created() {
@@ -182,11 +184,12 @@ Vue.component('post-details', {
                     <div class="col-md-12">
                         <div class="form-group" v-if="!data.post_id">
                             <label class="form-label">Изображение</label>
-                            <input type="file" class="form-control" 
-                                name="image" 
-                                @change="onFileChange"
-                                required
-                            >
+                            <div class="file-upload">
+                                <label for="upload" class="file-upload-label"><i class="fe fe-file-plus"></i> Выбрать</label>
+                                <input type="file" class="form-control file-upload-input" v-on:change="onImageChange">
+                            </div>
+                             
+                            <button @click="upload" class="btn btn-outline-primary btn-sm">Загрузить</button>                       
                         </div>
                         <div class="form-group">
                             <label class="form-label">Название</label>
@@ -246,30 +249,16 @@ Vue.component('tinymce-editor', {
                 toolbar2: "print preview media | forecolor backcolor emoticons",
                 images_upload_url: '/api/admin/post/upload',
                 images_upload_handler: function (blobInfo, success, failure) {
-                    var xhr, formData;
-
-                    xhr = new XMLHttpRequest();
-                    xhr.withCredentials = false;
-                    xhr.open('POST', '/api/admin/post/upload');
-
-                    xhr.onload = function() {
-                        var json;
-                        if (xhr.status != 200) {
-                            failure('HTTP Error: ' + xhr.status);
-                            return;
-                        }
-                        json = JSON.parse(xhr.responseText);
-                        if (!json || typeof json.location != 'string') {
-                            failure('Invalid JSON: ' + xhr.responseText);
-                            return;
-                        }
-                        success(json.location);
+                    const config = {
+                        headers: { 'content-type': 'multipart/form-data' }
                     };
+                    let formData = new FormData();
+                    formData.append('image', blobInfo.blob(), blobInfo.filename());
 
-                    formData = new FormData();
-                    formData.append('file', blobInfo.blob(), blobInfo.filename());
-
-                    xhr.send(formData);
+                    axios.post('/api/admin/post/upload', formData, config)
+                        .then(function (response) {
+                            success(response.data.location);
+                        });
                 },
             }
         }
