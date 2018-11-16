@@ -18641,3 +18641,10 @@ svg {
   height: 100%;
   opacity: 0;
 }
+
+.b-alert-custom {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  width: 300px;
+}

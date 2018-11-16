@@ -142,6 +142,7 @@ Vue.component('post-details', {
         return {
             data: {},
             image: null,
+            alert: null,
         }
     },
     methods: {
@@ -154,7 +155,13 @@ Vue.component('post-details', {
             console.log(post);
             axios.put('/api/admin/post/' + this.id, {params: post}).then(response => {
                 console.log(response.data);
+                // this.alert.status = 'success';
+                this.alert = response.data.title;
+                console.log(this.alert);
                 // this.data = response.data;
+            }, error => {
+                // this.alert.status = 'danger';
+                this.alert = response.data.title;
             });
         },
         onImageChange(e){
@@ -177,7 +184,8 @@ Vue.component('post-details', {
         this.getPost();
     },
     template: `
-    <div>  
+    <div>
+        <alert :title="this.alert" v-show="alert"></alert>
         <form class="card" method="post" @submit.prevent="updatePost(data)">
             <div class="card-body">
                 <div class="row">
@@ -312,6 +320,32 @@ Vue.component('tinymce-editor', {
     }
 });
 
+
+Vue.component('alert', {
+    props: ['status', 'title'],
+    data: function () {
+        return {
+            dismissSecs: 4,
+            dismissCountDown: 0,
+        }
+    },
+    template: `
+    <div>
+        <b-alert :show="dismissCountDown" 
+                    dismissible 
+                    variant="success" 
+                    @dismissed="dismissCountDown = 0" 
+                    @dismiss-count-down="countDownChanged">{{ title }}</b-alert>
+    </div>`,
+    methods: {
+        countDownChanged (dismissCountDown) {
+            this.dismissCountDown = dismissCountDown
+        },
+        showAlert () {
+            this.dismissCountDown = this.dismissSecs
+        }
+    }
+});
 new Vue({
     el: '#app',
 });

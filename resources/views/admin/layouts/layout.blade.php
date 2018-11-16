@@ -12,6 +12,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-vue@2.0.0-rc.1/dist/bootstrap-vue.css"></link>
     <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <!-- Generated: 2018-04-16 09:29:05 +0200 -->
@@ -20,6 +21,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
     <script type='text/javascript' src='{{ asset('js/legacy/vue.js') }}'></script>
     <script type='text/javascript' src='{{ asset('js/legacy/axios.js') }}'></script>
+    <script src="https://unpkg.com/bootstrap-vue@2.0.0-rc.1/dist/bootstrap-vue.js"></script>
     <script src="{{ asset('js/admin/require.min.js') }}"></script>
     <script>
         requirejs.config({
