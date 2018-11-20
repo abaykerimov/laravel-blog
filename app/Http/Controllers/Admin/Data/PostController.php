@@ -28,13 +28,20 @@ class PostController extends Controller
 
     public function update(Post $post)
     {
-        $input = Input::get('params');
-        $post->title = $input['title'];
-        $post->body = $input['body'];
+        $input           = Input::get('params');
+        $post->title     = $input['title'];
+        $post->image     = $input['image'];
+        $post->body      = $input['body'];
         $post->published = $input['published'];
+        $post->finished  = $input['finished'];
+        $post->views     = ++$post->views;
+        if ($input['post_id']) $post->parent()->associate(Post::find($input['post_id']));
         $post->save();
 
-        return response()->json($post);
+        return response()->json([
+            'title' => 'Успешно сохранено',
+            'data'  => $post
+        ]);
     }
 
     public function show(Post $post)
@@ -52,6 +59,7 @@ class PostController extends Controller
             $image->move($destinationPath, $name);
 
             return response()->json([
+                'title'    => 'Успешно загружено',
                 'location' => $path . $name
             ]);
         }

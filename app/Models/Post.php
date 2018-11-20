@@ -25,7 +25,8 @@ class Post extends Model
     ];
 
     protected $casts = [
-        'published' => 'boolean'
+        'published' => 'boolean',
+        'finished'  => 'boolean'
     ];
 
     public function getTitle()

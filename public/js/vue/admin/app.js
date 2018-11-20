@@ -141,7 +141,6 @@ Vue.component('post-details', {
     data: function () {
         return {
             data: {},
-            image: null,
             alert: null,
         }
     },
@@ -151,27 +150,27 @@ Vue.component('post-details', {
                 this.data = response.data;
             });
         },
-        updatePost(post) {
-            this.alert = 'updated';
-            axios.put('/api/admin/post/' + this.id, {params: post}).then(response => {
-                this.data = response.data;
-                this.alert = null;
+        updatePost() {
+            axios.put('/api/admin/post/' + this.id, {params: this.data}).then(response => {
+                this.data = response.data.data;
+                this.alert = response.data.title;
             });
         },
         onImageChange(e){
-            this.image = e.target.files[0];
+            this.data.image = e.target.files[0];
         },
 
-        upload(e) {
+        upload() {
             const config = {
                 headers: { 'content-type': 'multipart/form-data' }
             };
             let formData = new FormData();
-            formData.append('image', this.image);
+            formData.append('image', this.data.image);
 
-            axios.post('/api/admin/post/upload', formData, config)
-                .catch(function (error) {
-                });
+            axios.post('/api/admin/post/upload', formData, config).then(response => {
+                this.alert = response.data.title;
+                this.data.image = response.data.location;
+            });
         }
     },
     created() {
@@ -179,8 +178,8 @@ Vue.component('post-details', {
     },
     template: `
     <div>
-        <alert v-if="alert" :title="data.title"></alert>
-        <form class="card" method="post" @submit.prevent="updatePost(data)">
+        <alert v-if="alert" :title="alert"></alert>
+        <form class="card" method="post" @submit.prevent="updatePost()">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
@@ -190,8 +189,8 @@ Vue.component('post-details', {
                                 <label for="upload" class="file-upload-label"><i class="fe fe-file-plus"></i> Выбрать</label>
                                 <input type="file" class="form-control file-upload-input" v-on:change="onImageChange">
                             </div>
-                             
-                            <button @click="upload" class="btn btn-outline-primary btn-sm">Загрузить</button>                       
+                            <button type="button" @click="upload" class="btn btn-outline-primary btn-sm">Загрузить</button>                       
+                            <span v-if="data.image" v-text="data.image"></span>
                         </div>
                         <div class="form-group">
                             <label class="form-label">Название</label>
