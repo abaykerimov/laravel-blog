@@ -152,16 +152,10 @@ Vue.component('post-details', {
             });
         },
         updatePost(post) {
-            console.log(post);
+            this.alert = 'updated';
             axios.put('/api/admin/post/' + this.id, {params: post}).then(response => {
-                console.log(response.data);
-                // this.alert.status = 'success';
-                this.alert = response.data.title;
-                console.log(this.alert);
-                // this.data = response.data;
-            }, error => {
-                // this.alert.status = 'danger';
-                this.alert = response.data.title;
+                this.data = response.data;
+                this.alert = null;
             });
         },
         onImageChange(e){
@@ -185,7 +179,7 @@ Vue.component('post-details', {
     },
     template: `
     <div>
-        <alert :title="this.alert" v-show="alert"></alert>
+        <alert v-if="alert" :title="data.title"></alert>
         <form class="card" method="post" @submit.prevent="updatePost(data)">
             <div class="card-body">
                 <div class="row">
@@ -331,8 +325,8 @@ Vue.component('alert', {
     },
     template: `
     <div>
-        <b-alert :show="dismissCountDown" 
-                    dismissible 
+        <b-alert class="b-alert-custom" 
+                    :show="dismissCountDown" 
                     variant="success" 
                     @dismissed="dismissCountDown = 0" 
                     @dismiss-count-down="countDownChanged">{{ title }}</b-alert>
@@ -344,6 +338,9 @@ Vue.component('alert', {
         showAlert () {
             this.dismissCountDown = this.dismissSecs
         }
+    },
+    created() {
+        this.showAlert();
     }
 });
 new Vue({
