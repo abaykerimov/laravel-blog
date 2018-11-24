@@ -10,7 +10,8 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::whereNotNull('post_id')->where('published', true)->get();
+//        $posts = Post::where('published', true);
         return response()->json($posts);
     }
 
@@ -24,8 +25,13 @@ class PostController extends Controller
 
     }
 
-    public function show(PostRequest $post)
+    public function show(Post $post)
     {
-        return view('site.posts.details');
+        return response()->json($post);
+    }
+
+    public function comments(Post $post)
+    {
+        return response()->json($post->comments);
     }
 }
