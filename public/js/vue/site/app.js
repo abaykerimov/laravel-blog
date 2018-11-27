@@ -160,8 +160,8 @@ Vue.component('post-comments', {
     template: `
     <div v-if="comments">
         <div class="content-area">
-            <div class="post-comments">
-                <h3 class="comments-title">Comments</h3>
+            <div class="post-comments" v-if="comments.length > 0">
+                <h3 class="comments-title">Комментарии</h3>
 
                 <ol class="comment-list">
                     <li class="comment" v-for="comment in comments">
