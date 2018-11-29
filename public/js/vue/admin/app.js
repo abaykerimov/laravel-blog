@@ -43,7 +43,7 @@ Vue.component('post-list', {
                                 <td><span class="text-muted" v-text="child.id"></span></td>
                                 <td><a href="invoice.html" class="text-inherit" v-text="child.title"></a></td>
                                 <td>
-                                    <span class="status-icon bg-success"></span> Paid
+                                    <span class="status-icon bg-success"></span> Опубликовано
                                 </td>
                                 <td v-text="child.created_at"></td>
                                 <!--<td class="text-right">-->
@@ -183,7 +183,7 @@ Vue.component('post-details', {
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="form-group" v-if="!data.post_id">
+                        <div class="form-group" v-if="data.post_id">
                             <label class="form-label">Изображение</label>
                             <div class="file-upload">
                                 <label for="upload" class="file-upload-label"><i class="fe fe-file-plus"></i> Выбрать</label>
@@ -200,6 +200,10 @@ Vue.component('post-details', {
                                 v-model="data.title"
                                 required
                             >
+                        </div>
+                        <div class="form-group" v-if="data.post_id">
+                            <label class="form-label">Краткое описание</label>
+                            <textarea class="form-control" v-model="data.description"></textarea>
                         </div>
                         <div class="form-group" v-if="data.post_id">
                             <label class="form-label">Описание</label>

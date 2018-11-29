@@ -28,12 +28,13 @@ class PostController extends Controller
 
     public function update(Post $post)
     {
-        $input           = Input::get('params');
-        $post->title     = $input['title'];
-        $post->image     = $input['image'];
-        $post->body      = $input['body'];
-        $post->published = $input['published'];
-        $post->finished  = $input['finished'];
+        $input             = Input::get('params');
+        $post->title       = $input['title'];
+        $post->image       = $input['image'];
+        $post->description = $input['description'];
+        $post->body        = $input['body'];
+        $post->published   = $input['published'];
+        $post->finished    = $input['finished'];
         if ($input['post_id']) $post->parent()->associate(Post::find($input['post_id']));
         $post->save();
 

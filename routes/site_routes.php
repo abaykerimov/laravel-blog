@@ -17,6 +17,7 @@ Route::group([
         'namespace'  => 'Data',
     ], function(){
         Route::apiResource('post', 'PostController')->only(['index', 'store', 'show']);
+        Route::get('post/{post}/comments', 'PostController@comments');
 
         Route::apiResource('documents', 'Documents\DocumentsController')->only(['index', 'update'])
             ->parameters([

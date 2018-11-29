@@ -14,6 +14,7 @@ class Post extends Model
         'post_id',
         'image',
         'title',
+        'description',
         'body',
         'published',
         'finished',
@@ -46,6 +47,10 @@ class Post extends Model
 
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+    public function comments() {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     public function isPublished() {
