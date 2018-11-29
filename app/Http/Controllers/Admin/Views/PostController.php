@@ -15,6 +15,9 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
+        $post->views = ++$post->views;
+        $post->save();
+
         return view('admin.posts.details', [
             'post' => $post
         ]);

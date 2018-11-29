@@ -34,7 +34,6 @@ class PostController extends Controller
         $post->body      = $input['body'];
         $post->published = $input['published'];
         $post->finished  = $input['finished'];
-        $post->views     = ++$post->views;
         if ($input['post_id']) $post->parent()->associate(Post::find($input['post_id']));
         $post->save();
 
