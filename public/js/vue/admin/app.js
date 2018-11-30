@@ -1,3 +1,56 @@
+Vue.component('login', {
+    data: function () {
+        return {
+            auth: {
+                username: null,
+                password: null
+            },
+        }
+    },
+    methods: {
+        login() {
+            axios.post('/api/admin/login', {username: this.auth.username, password: this.auth.password}).then(response => {
+                if (!response.data.errors) window.location = response.data.location;
+            });
+        }
+    },
+    template: `
+    <div>
+        <form class="card" method="post" @submit.prevent="login(auth)">
+            <div class="card-body p-6">
+                <div class="card-title">Login to your account</div>
+                <div class="form-group">
+                    <label class="form-label">Username</label>
+                    <input class="form-control" 
+                        v-model="auth.username" 
+                        placeholder="Enter username" 
+                        required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">
+                        Password
+                        <a href="/admin/forgot" class="float-right small">I forgot password</a>
+                    </label>
+                    <input type="password"
+                        class="form-control" 
+                        v-model="auth.password" 
+                        placeholder="Password" 
+                        required>
+                </div>
+                <div class="form-group">
+                    <label class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" />
+                        <span class="custom-control-label">Remember me</span>
+                    </label>
+                </div>
+                <div class="form-footer">
+                    <button class="btn btn-primary btn-block">Sign in</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    `
+});
 Vue.component('post-list', {
     data: function () {
         return {
@@ -43,7 +96,10 @@ Vue.component('post-list', {
                                 <td><span class="text-muted" v-text="child.id"></span></td>
                                 <td><a href="invoice.html" class="text-inherit" v-text="child.title"></a></td>
                                 <td>
-                                    <span class="status-icon bg-success"></span> Опубликовано
+                                    <span class="status-icon" 
+                                        :class="{'bg-success': child.published, 'bg-danger': !child.published}"
+                                        ></span>
+                                    <span v-text="child.published ? 'Опубликовано' : 'Не опубликовано'"></span>
                                 </td>
                                 <td v-text="child.created_at"></td>
                                 <!--<td class="text-right">-->
@@ -142,9 +198,15 @@ Vue.component('post-details', {
         return {
             data: {},
             alert: null,
+            parents: null,
         }
     },
     methods: {
+        listPosts() {
+            axios.get('/api/admin/post').then(response => {
+                this.parents = response.data;
+            });
+        },
         getPost() {
             axios.get('/api/admin/post/' + this.id).then(response => {
                 this.data = response.data;
@@ -175,6 +237,7 @@ Vue.component('post-details', {
     },
     created() {
         this.getPost();
+        this.listPosts();
     },
     template: `
     <div>
@@ -183,6 +246,15 @@ Vue.component('post-details', {
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
+                        <div class="form-group" v-if="data.post_id">
+                            <label class="form-label">Рассказ</label>
+                            <select class="form-control"
+                                v-model="data.post_id"
+                                required
+                            >
+                                <option v-for="parent in parents" :value="parent.id" v-text="parent.title"></option>
+                            </select>
+                        </div>
                         <div class="form-group" v-if="data.post_id">
                             <label class="form-label">Изображение</label>
                             <div class="file-upload">
@@ -210,6 +282,7 @@ Vue.component('post-details', {
                             <tinymce-editor class="form-control" v-model="data.body"></tinymce-editor>
                         </div>
                         <div class="form-group">
+                            <label class="form-label">Статус</label>
                             <label class="custom-switch">
                                 <input type="checkbox" name="published" class="custom-switch-input" v-model="data.published">
                                 <span class="custom-switch-indicator"></span>
