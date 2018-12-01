@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'prefix'     => 'admin',
-    //'middleware' => ['api', 'auth:api'],
-    'middleware' => 'api',
+    'middleware' => ['api'],
+//    'middleware' => 'api',
     'namespace'  => 'Admin',
 ], function(){
     Route::group([
@@ -19,6 +19,11 @@ Route::group([
     ], function(){
         Route::apiResource('post', 'PostController');
         Route::post('post/upload', 'PostController@upload');
+        Route::group([
+            'prefix'     => 'auth',
+        ], function(){
+            Route::post('login', 'AuthController@store');
+        });
         Route::post('login', 'AuthController@store');
     });
 });

@@ -9,7 +9,7 @@ Vue.component('login', {
     },
     methods: {
         login() {
-            axios.post('/api/admin/login', {username: this.auth.username, password: this.auth.password}).then(response => {
+            axios.post('/api/admin/auth/login', {username: this.auth.username, password: this.auth.password}).then(response => {
                 if (!response.data.errors) window.location = response.data.location;
             });
         }

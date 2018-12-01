@@ -1,3 +1,7 @@
+<?php
+  auth()->check() ? $a = 'y' : $a = 'n';
+//  dd($a);
+?>
 @extends('admin.layouts.layout')
 
 @section('content')

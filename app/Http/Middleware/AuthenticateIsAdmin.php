@@ -43,9 +43,9 @@ class AuthenticateIsAdmin {
 			else
 			{
                 if (!auth()->user()->isAdmin()) {
-                    return redirect()->route('home');
+                    return redirect()->route('posts.index');
                 }
-				return redirect()->route('admin.posts.list');
+				return redirect()->route('admin.auth.login');
 			}
 		}
 
