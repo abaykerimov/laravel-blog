@@ -19,6 +19,7 @@ Route::group([
     ], function(){
         Route::apiResource('post', 'PostController');
         Route::post('post/upload', 'PostController@upload');
+        Route::post('login', 'AuthController@store');
     });
 });
 

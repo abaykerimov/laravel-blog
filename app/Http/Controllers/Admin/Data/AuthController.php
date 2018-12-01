@@ -16,7 +16,10 @@ class AuthController extends Controller
     public function store(AuthRequest $request)
     {
         if (auth()->attempt(['username' => $request->username, 'password' => $request->password], (bool)$request->remember)) {
-            return redirect()->to(url()->route('admin.posts.index'));
+            return response()->json([
+                'errors' => false,
+                'location' => url()->route('admin.posts.index')
+            ]);
         }
 
         return response()->json([

@@ -13,22 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('site.posts.list');
-});
-Route::get('/posts/{id}', function () {
-    return view('site.posts.details');
-})->name('posts.details');
-//Route::get('/admin', function () {
-//    return view('admin.index');
-//});
-//Route::get('/admin/posts', function () {
-//    return view('admin.posts.list');
-//})->name('admin.posts.list');
-
-
 Route::get('test', function () {
-    dd(DB::table('migrations')->get());
+    dd('ok');
 });
 
 Auth::routes();
