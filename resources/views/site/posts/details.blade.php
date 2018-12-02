@@ -1,5 +1,4 @@
 @extends('site.layouts.layout')
-
 @section('content')
     <div class="container single-page blog-page">
         <div class="row">

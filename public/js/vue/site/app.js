@@ -6,7 +6,7 @@ Vue.component('post-list', {
     },
     methods: {
         getPosts() {
-            axios.get('api/site/post').then(response => {
+            axios.get('api/post').then(response => {
                 this.posts = response.data;
             });
         }
@@ -70,7 +70,7 @@ Vue.component('post-detail', {
     },
     methods: {
         getPost() {
-            axios.get('/api/site/post/' + this.id).then(response => {
+            axios.get('/api/post/' + this.id).then(response => {
                 this.post = response.data;
             });
         }
@@ -145,13 +145,26 @@ Vue.component('post-comments', {
     data: function () {
         return {
             comments: null,
+            comment: {
+                user_name: null,
+                body: null
+            },
         }
     },
     methods: {
         getComments() {
-            axios.get('/api/site/post/' + this.id + '/comments').then(response => {
+            axios.get('/api/post/' + this.id + '/comments').then(response => {
                 this.comments = response.data;
             });
+        },
+        addComment() {
+            axios.post('/api/post/' + this.id + '/comments', {name: this.comment.user_name, body: this.comment.body, post_id: this.id}).then(response => {
+                this.comments.push(this.comment);
+                this.comment = {};
+            });
+        },
+        moment: function (date) {
+            return moment(date).format('MMM D, YY');
         }
     },
     created() {
@@ -177,7 +190,7 @@ Vue.component('post-comments', {
                                     </span><!-- .fn -->
 
                                     <span class="comment-meta">
-                                        <a href="#">Jan 29, 2018</a>
+                                        <a href="#" v-text="moment(comment.created_at)"></a>
                                     </span><!-- .comment-meta -->
 
                                     <div class="reply">
@@ -197,9 +210,9 @@ Vue.component('post-comments', {
                 <div class="comment-respond">
                     <h3 class="comment-reply-title">Оставить комментарий</h3>
 
-                    <form class="comment-form">
-                        <input type="text" placeholder="Имя">
-                        <textarea rows="18" cols="6" placeholder="Комментарий..."></textarea>
+                    <form class="comment-form" @submit.prevent="addComment()">
+                        <input type="text" placeholder="Имя" v-model="comment.user_name">
+                        <textarea rows="18" cols="6" placeholder="Комментарий..." v-model="comment.body"></textarea>
                         <input type="submit" value="Добавить">
                     </form><!-- .comment-form -->
                 </div><!-- .comment-respond -->

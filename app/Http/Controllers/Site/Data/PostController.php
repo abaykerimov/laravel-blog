@@ -29,9 +29,4 @@ class PostController extends Controller
     {
         return response()->json($post);
     }
-
-    public function comments(Post $post)
-    {
-        return response()->json($post->comments);
-    }
 }

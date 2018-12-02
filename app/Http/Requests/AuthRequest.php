@@ -31,7 +31,7 @@ class AuthRequest extends FormRequest
     public function rules()
     {
         return [
-            'username'   =>  ['required'],
+            'username'   =>  ['required', 'string', 'between:1,100'],
             'password'   =>  ['required'],
         ];
     }

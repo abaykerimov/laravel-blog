@@ -25,7 +25,7 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'   =>  ['required'],
+            'title'   =>  ['required', 'string', 'between:1,200'],
             'post_id' =>  [''],
         ];
     }

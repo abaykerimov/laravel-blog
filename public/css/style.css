@@ -696,9 +696,11 @@ a:hover, a:active {
 /*
 # Comments
 --------------------------------*/
-.post-comments,
+.post-comments {
+    margin-top: 75px;
+}
 .comment-form {
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
 .post-comments h3 {
@@ -707,7 +709,7 @@ a:hover, a:active {
 
 .comment-list {
     padding: 0;
-    margin: 100px 0 0;
+    margin: 60px 0 0;
     list-style: none;
 }
 
@@ -781,7 +783,7 @@ a:hover, a:active {
     display: block;
     width: 200px;
     padding: 20px 0;
-    margin-top: 70px;
+    /*margin-top: 70px;*/
     border: 0;
     font-size: 14px;
     color: #fff;

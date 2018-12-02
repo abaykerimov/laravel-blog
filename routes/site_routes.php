@@ -9,15 +9,19 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group([
-    'prefix'     => 'site',
     'middleware' => 'api',
     'namespace'  => 'Site',
 ], function(){
     Route::group([
         'namespace'  => 'Data',
     ], function(){
-        Route::apiResource('post', 'PostController')->only(['index', 'store', 'show']);
-        Route::get('post/{post}/comments', 'PostController@comments');
+        Route::group([
+            'prefix'  => 'post',
+        ], function(){
+            Route::get('{post}/comments', 'CommentController@show');
+            Route::post('{post}/comments', 'CommentController@store');
+        });
+        Route::apiResource('post', 'PostController')->only(['index', 'show']);
 
         Route::apiResource('documents', 'Documents\DocumentsController')->only(['index', 'update'])
             ->parameters([
