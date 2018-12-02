@@ -36,7 +36,9 @@
 <body>
 <div class="page" id="app">
     <div class="page-main">
-        @include('admin.blocks.header')
+        @auth
+            @include('admin.blocks.header')
+        @endauth
         <div class="my-3 my-md-5">
             @yield('content')
         </div>

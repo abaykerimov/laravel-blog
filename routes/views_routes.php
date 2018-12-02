@@ -24,8 +24,16 @@ Route::group([
     'prefix' => 'admin',
     'namespace'  => 'Admin',
 ], function(){
+    Route::group([
+        'namespace'  => 'Auth',
+        'prefix'     => 'auth',
+    ], function(){
+        Route::get('/login',  'AuthController@login')->name('admin.auth.login');
+        Route::get('/logout', 'AuthController@logout')->name('admin.auth.logout');
+        Route::get('/forgot', 'AuthController@forgot')->name('admin.auth.forgot');
+        Route::get('/reset',  'AuthController@reset')->name('admin.auth.reset');
+    });
     Route::get('/',[
-        'as'    => 'admin',
         function() {
             if (auth()->check() and auth()->user()->isAdmin()) {
                 return view('admin.posts.list');
@@ -35,16 +43,9 @@ Route::group([
     ]);
     Route::group([
         'namespace'  => 'Views',
+        'middleware' => ['auth', 'auth.admin'],
     ], function(){
         Route::get('/posts', 'PostController@index')->name('admin.posts.index');
         Route::get('/posts/{post}', 'PostController@show')->name('admin.posts.details');
-
-        Route::group([
-            'prefix'     => 'auth',
-        ], function(){
-            Route::get('/login', 'AuthController@login')->name('admin.auth.login');
-            Route::get('/forgot', 'AuthController@forgot')->name('admin.auth.forgot');
-            Route::get('/reset', 'AuthController@reset')->name('admin.auth.reset');
-        });
     });
 });

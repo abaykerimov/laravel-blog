@@ -74,8 +74,8 @@ Vue.component('post-list', {
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" :href="'#collapse'+post.id" v-text="post.title"></a>
+                        <button class="btn btn-outline-primary btn-sm btn-post-create" data-toggle="modal" data-target="#createChild"><i class="fe fe-plus"></i> </button>
                         <a class="icon btn-post-create" :href="'/admin/posts/' + post.id"><i class="fe fe-edit"></i></a>
-                        <button class="btn btn-outline-primary btn-sm btn-post-create" data-toggle="modal" data-target="#createChild"><i class="fe fe-plus"></i> Создать</button>
                     </h4>
                 </div>
                 <div :id="'collapse'+post.id" class="panel-collapse collapse in">

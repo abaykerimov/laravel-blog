@@ -30,6 +30,7 @@
 <style>
     .btn-post-create {
         float: right;
+        margin-left: 10px;
     }
 </style>
 @endpush

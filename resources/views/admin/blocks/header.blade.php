@@ -2,7 +2,7 @@
     <div class="container">
         <div class="d-flex">
             <a class="header-brand" href="{{ url()->route('admin.posts.index') }}">
-                <img src="/demo/brand/tabler.svg" class="header-brand-img" alt="tabler logo">
+                <div class="site-title">Aisha</div>
             </a>
             <div class="d-flex order-lg-2 ml-auto">
                 <div class="dropdown d-none d-md-flex">
@@ -59,7 +59,7 @@
                             <i class="dropdown-icon fe fe-send"></i> Message
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ url()->route('admin.auth.logout') }}">
                             <i class="dropdown-icon fe fe-log-out"></i> Sign out
                         </a>
                     </div>

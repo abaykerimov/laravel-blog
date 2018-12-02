@@ -10,20 +10,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'prefix'     => 'admin',
-    'middleware' => ['api'],
-//    'middleware' => 'api',
     'namespace'  => 'Admin',
 ], function(){
     Route::group([
+        'prefix'     => 'auth',
+        'namespace'  => 'Auth',
+    ], function(){
+        Route::post('login', 'AuthController@store');
+    });
+    Route::group([
         'namespace'  => 'Data',
+        'middleware' => ['auth', 'auth.admin'],
     ], function(){
         Route::apiResource('post', 'PostController');
         Route::post('post/upload', 'PostController@upload');
-        Route::group([
-            'prefix'     => 'auth',
-        ], function(){
-            Route::post('login', 'AuthController@store');
-        });
         Route::post('login', 'AuthController@store');
     });
 });

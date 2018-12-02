@@ -1,4 +1,14 @@
 @charset "UTF-8";
+@font-face {
+  font-family: 'BeyondTheMountains';
+  src: url('../../fonts/BeyondTheMountains.eot?#iefix') format('embedded-opentype'),
+  url('../../fonts/BeyondTheMountains.otf')  format('opentype'),
+  url('../../fonts/BeyondTheMountains.woff') format('woff'),
+  url('../../fonts/BeyondTheMountains.ttf')  format('truetype'),
+  url('../../fonts/BeyondTheMountains.svg#BeyondTheMountains') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 /**
 Dashboard UI
  */
@@ -18647,4 +18657,14 @@ svg {
   bottom: 5px;
   right: 5px;
   width: 300px;
+}
+
+.site-title {
+  font-size: 30px;
+  font-family: 'BeyondTheMountains';
+}
+
+.site-title a {
+  color: #2f2f2f;
+  text-decoration: none;
 }
