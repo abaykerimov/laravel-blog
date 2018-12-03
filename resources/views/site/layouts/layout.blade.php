@@ -23,7 +23,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather%3A300%7CPlayfair+Display+SC%3A400%2C700%2C900%2C400italic%2C700italic%2C900italic%7CSource+Sans+Pro%3A200%2C300%2C400%2C600%2C700%2C900%2C200italic%2C300italic%2C400italic%2C600italic%2C700italic%2C900italic&amp;subset=latin&amp;ver=1521218824" type="text/css" media="all">
     <script type='text/javascript' src='{{ asset('js/legacy/vue.js') }}'></script>
     <script type='text/javascript' src='{{ asset('js/legacy/axios.js') }}'></script>
-    <script type='text/javascript' src='https://momentjs.com/downloads/moment.min.js'></script>
+    <script type='text/javascript' src='{{ asset('js/legacy/moment.min.js') }}'></script>
+    <script type='text/javascript' src='{{ asset('js/legacy/vue-social-sharing.min.js') }}'></script>
 <body oncopy="return false" oncut="return false" onpaste="return false" oncontextmenu="return false">
 <div id="app" class="outer-container">
 

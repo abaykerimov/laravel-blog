@@ -43,13 +43,34 @@ Vue.component('post-list', {
             <div class="entry-content"><p v-text="post.description"></p></div><!-- .entry-content -->
     
             <footer class="entry-footer flex flex-column flex-lg-row justify-content-between align-content-start align-lg-items-center">
-            <ul class="post-share flex align-items-center order-3 order-lg-1">
-                <label>Share</label>
-                <li><a href="#"><i class="fa fa-vk"></i></a></li>
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-            </ul><!-- .post-share -->
+            <div class="post-share flex align-items-center order-3 order-lg-1">
+                    <label>Share</label>
+                    <social-sharing url="https://vuejs.org/"
+                                title="The Progressive JavaScript Framework"
+                                description="Intuitive, Fast and Composable MVVM for building interactive interfaces."
+                                quote="Vue is a progressive framework for building user interfaces."
+                                hashtags="vuejs,javascript,framework"
+                                twitter-user="vuejs"
+                                inline-template>
+                        <div>  
+                            <network network="vk">
+                                <i class="fa fa-vk"></i>
+                            </network>
+                            <network network="facebook">
+                                <i class="fa fa-facebook"></i>
+                            </network>
+                            <network network="googleplus">
+                                <i class="fa fa-google-plus"></i>
+                            </network>
+                            <network network="telegram">
+                                <i class="fa fa-telegram"></i>
+                            </network>
+                            <network network="twitter">
+                                <i class="fa fa-twitter"></i>
+                            </network>
+                        </div>
+                    </social-sharing> 
+                </div>
 
             <a class="read-more order-2" :href="'/posts/'+post.id">Read more</a>
 
@@ -73,6 +94,9 @@ Vue.component('post-detail', {
             axios.get('/api/post/' + this.id).then(response => {
                 this.post = response.data;
             });
+        },
+        moment: function (date) {
+            return moment(date).format('MMMM D, YY');
         }
     },
     created() {
@@ -82,9 +106,7 @@ Vue.component('post-detail', {
     <div v-if="post">
         <div class="content-wrap">
             <header class="entry-header">
-                <div class="posted-date">
-                    January 30, 2018
-                </div><!-- .posted-date -->
+                <div class="posted-date" v-text="moment(post.created_at)"></div><!-- .posted-date -->
     
                 <h2 class="entry-title" v-text="post.title"></h2>
     
@@ -108,29 +130,34 @@ Vue.component('post-detail', {
     
             </div><!-- .entry-content -->
     
-            <!--<div class="row">-->
-                <!--<div class="col-12 col-md-6">-->
-                    <!--<figure class="blog-page-half-img">-->
-                        <!--<img src="{{ asset('images/layout/blog-img-1.png') }}" alt="">-->
-                    <!--</figure>&lt;!&ndash; .blog-page-half-img &ndash;&gt;-->
-                <!--</div>&lt;!&ndash; .col &ndash;&gt;-->
-    <!---->
-                <!--<div class="col-12 col-md-6">-->
-                    <!--<figure class="blog-page-half-img">-->
-                        <!--<img src="{{ asset('images/layout/blog-img-2.png') }}" alt="">-->
-                    <!--</figure>&lt;!&ndash; .blog-page-half-img &ndash;&gt;-->
-                <!--</div>&lt;!&ndash; .col &ndash;&gt;-->
-            <!--</div>&lt;!&ndash; .row &ndash;&gt;-->
-    
             <footer class="entry-footer flex flex-column flex-lg-row justify-content-between align-content-start align-lg-items-center">
-                <ul class="post-share flex align-items-center order-3 order-lg-1">
+                <div class="post-share flex align-items-center order-3 order-lg-1">
                     <label>Share</label>
-                    <li><a href="#"><i class="fa fa-vk"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                </ul><!-- .post-share -->
+                    <social-sharing url="https://vuejs.org/"
+                                :title="post.title"
+                                :description="post.description"
+                                quote="Vue is a progressive framework for building user interfaces."
+                                hashtags="vuejs,javascript,framework"
+                                inline-template>
+                        <div>  
+                            <network network="vk">
+                                <i class="fa fa-vk"></i>
+                            </network>
+                            <network network="facebook">
+                                <i class="fa fa-facebook"></i>
+                            </network>
+                            <network network="googleplus">
+                                <i class="fa fa-google-plus"></i>
+                            </network>
+                            <network network="telegram">
+                                <i class="fa fa-telegram"></i>
+                            </network>
+                            <network network="twitter">
+                                <i class="fa fa-twitter"></i>
+                            </network>
+                        </div>
+                    </social-sharing> 
+                </div>
     
                 <div class="comments-count order-1 order-lg-3">
                     <a href="#">2 Comments</a>
@@ -222,6 +249,7 @@ Vue.component('post-comments', {
     `
 });
 
+Vue.use(SocialSharing);
 new Vue({
     el: '#app',
 });

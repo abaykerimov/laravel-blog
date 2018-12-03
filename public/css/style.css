@@ -555,12 +555,14 @@ a:hover, a:active {
     font-size: 15px;
 }
 
-.post-share li a {
+.post-share span {
     color: #afafaf;
+    margin-right: 10px;
+    cursor: pointer;
     transition: all 0.35s;
 }
 
-.post-share li a:hover {
+.post-share span:hover {
     color: #2f2f2f;
 }
 
