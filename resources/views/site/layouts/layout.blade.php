@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <title>{{ config('app.name') }}</title>
+    @yield('meta', '')
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">

@@ -1,5 +1,18 @@
 @extends('site.layouts.layout')
+@section('meta')
+    <title>{{ env('APP_NAME') }}</title>
+    {{--<meta name='description' itemprop='description' content='{{ $post->seo_description }}' />--}}
+    {{--<meta name='keywords' content='{{ $post->seo_keywords }}' />--}}
 
+    {{--<meta property="og:description" content="{{ $post->seo_description }}" />--}}
+    <meta property="og:title" content="{{ env('APP_NAME') }}" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:locale" content="ru-ru" />
+    {{--<meta property="og:image" content="{{ public_path($post->image) }}" />--}}
+    {{--<meta property="og:image:url" content="{{ env('APP_URL') . $post->image }}" />--}}
+    {{--<meta property="og:image:size" content="300" />--}}
+    <meta name="twitter:title" content="{{ env('APP_NAME') }}" />
+@endsection
 @section('content')
     <post-list></post-list>
     {{--<div class="col-12 col-lg-9">--}}
@@ -126,14 +139,6 @@
                 {{--</div><!-- .comments-count -->--}}
             {{--</footer><!-- .entry-footer -->--}}
         {{--</div><!-- .content-wrap -->--}}
-
-        {{--<div class="pagination">--}}
-            {{--<ul class="flex align-items-center">--}}
-                {{--<li class="active"><a href="#">1</a></li>--}}
-                {{--<li><a href="#">2</a></li>--}}
-                {{--<li><a href="#">3</a></li>--}}
-            {{--</ul>--}}
-        {{--</div>--}}
     {{--</div><!-- .col -->--}}
     @include('site.blocks.sidebar')
 

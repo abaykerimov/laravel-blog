@@ -21,6 +21,14 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: "feather";
+    src: url("../../fonts/feather/feather-webfont.eot?t=1501841394106");
+    /* IE9*/
+    src: url("../../fonts/feather/feather-webfont.eot?t=1501841394106#iefix") format("embedded-opentype"), url("../../fonts/feather/feather-webfont.woff?t=1501841394106") format("woff"), url("../../fonts/feather/feather-webfont.ttf?t=1501841394106") format("truetype"), url("../../fonts/feather/feather-webfont.svg?t=1501841394106#feather") format("svg");
+    /* iOS 4.1- */
+}
+
 body {
     color: #2f2f2f;
     font-family: 'Merriweather';
@@ -511,7 +519,7 @@ a:hover, a:active {
 }
 
 .single-page .blockquote-text {
-    padding-left: 114px;
+    /*padding-left: 114px;*/
     margin-top: 84px;
     font-size: 18px;
     line-height: 2.2rem;
@@ -679,7 +687,7 @@ a:hover, a:active {
 --------------------------------------------------------------*/
 .about-page .content-wrap p,
 .blog-page .content-wrap p {
-    margin-bottom: 34px;
+    /*margin-bottom: 34px;*/
 }
 
 .blog-page-half-img {
@@ -1067,7 +1075,7 @@ a:hover, a:active {
 # Footer
 --------------------------------------------------------------*/
 .sit-footer {
-    padding-top: 100px;
+    /*padding-top: 100px;*/
     border-top: 1px solid #d8d8d8;
 }
 
@@ -1223,6 +1231,40 @@ a:hover, a:active {
 .footer-social li a:hover {
     color: #fff;
 }
+
+.icon {
+    color: #9aa0ac !important;
+}
+
+.icon i {
+    vertical-align: -1px;
+}
+
+a.icon {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a.icon:hover {
+    color: #495057 !important;
+}
+
+.fe {
+    font-family: 'feather' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.fe-heart:before {
+    content: "\e975";
+}
+
 
 @media screen and (min-width: 768px) {
     .footer-copyright p {

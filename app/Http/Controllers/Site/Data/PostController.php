@@ -11,7 +11,6 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::whereNotNull('post_id')->where('published', true)->get();
-//        $posts = Post::where('published', true);
         return response()->json($posts);
     }
 
@@ -28,5 +27,10 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return response()->json($post);
+    }
+
+    public function search()
+    {
+
     }
 }

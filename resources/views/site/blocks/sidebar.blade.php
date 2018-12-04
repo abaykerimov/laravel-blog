@@ -30,68 +30,68 @@
                     </header><!-- .entry-header -->
                 </div><!-- .recent-post-wrap -->
 
-                <div class="recent-post-wrap">
-                    <figure>
-                        <img src="{{ asset('images/layout/thumb-2.jpg') }}" alt="">
-                    </figure>
+                {{--<div class="recent-post-wrap">--}}
+                    {{--<figure>--}}
+                        {{--<img src="{{ asset('images/layout/thumb-2.jpg') }}" alt="">--}}
+                    {{--</figure>--}}
 
-                    <header class="entry-header">
-                        <div class="posted-date">
-                            January 30, 2018
-                        </div><!-- .entry-header -->
+                    {{--<header class="entry-header">--}}
+                        {{--<div class="posted-date">--}}
+                            {{--January 30, 2018--}}
+                        {{--</div><!-- .entry-header -->--}}
 
-                        <h3><a href="#">Test</a></h3>
+                        {{--<h3><a href="#">Test</a></h3>--}}
 
-                        <div class="tags-links">
-                            <a href="#">#test</a>
-                            <a href="#">#test</a>
-                            <a href="#">#test</a>
-                            <a href="#">#test</a>
-                        </div><!-- .tags-links -->
-                    </header><!-- .entry-header -->
-                </div><!-- .recent-post-wrap -->
+                        {{--<div class="tags-links">--}}
+                            {{--<a href="#">#test</a>--}}
+                            {{--<a href="#">#test</a>--}}
+                            {{--<a href="#">#test</a>--}}
+                            {{--<a href="#">#test</a>--}}
+                        {{--</div><!-- .tags-links -->--}}
+                    {{--</header><!-- .entry-header -->--}}
+                {{--</div><!-- .recent-post-wrap -->--}}
 
-                <div class="recent-post-wrap">
-                    <figure>
-                        <img src="{{ asset('images/layout/thumb-3.jpg') }}" alt="">
-                    </figure>
+                {{--<div class="recent-post-wrap">--}}
+                    {{--<figure>--}}
+                        {{--<img src="{{ asset('images/layout/thumb-3.jpg') }}" alt="">--}}
+                    {{--</figure>--}}
 
-                    <header class="entry-header">
-                        <div class="posted-date">
-                            January 30, 2018
-                        </div><!-- .entry-header -->
+                    {{--<header class="entry-header">--}}
+                        {{--<div class="posted-date">--}}
+                            {{--January 30, 2018--}}
+                        {{--</div><!-- .entry-header -->--}}
 
-                        <h3><a href="#">Test</a></h3>
+                        {{--<h3><a href="#">Test</a></h3>--}}
 
-                        <div class="tags-links">
-                            <a href="#">#test</a>
-                            <a href="#">#test</a>
-                            <a href="#">#test</a>
-                            <a href="#">#test</a>
-                        </div><!-- .tags-links -->
-                    </header><!-- .entry-header -->
-                </div><!-- .recent-post-wrap -->
+                        {{--<div class="tags-links">--}}
+                            {{--<a href="#">#test</a>--}}
+                            {{--<a href="#">#test</a>--}}
+                            {{--<a href="#">#test</a>--}}
+                            {{--<a href="#">#test</a>--}}
+                        {{--</div><!-- .tags-links -->--}}
+                    {{--</header><!-- .entry-header -->--}}
+                {{--</div><!-- .recent-post-wrap -->--}}
 
-                <div class="recent-post-wrap">
-                    <figure>
-                        <img src="{{ asset('images/layout/thumb-4.jpg') }}" alt="">
-                    </figure>
+                {{--<div class="recent-post-wrap">--}}
+                    {{--<figure>--}}
+                        {{--<img src="{{ asset('images/layout/thumb-4.jpg') }}" alt="">--}}
+                    {{--</figure>--}}
 
-                    <header class="entry-header">
-                        <div class="posted-date">
-                            January 30, 2018
-                        </div><!-- .entry-header -->
+                    {{--<header class="entry-header">--}}
+                        {{--<div class="posted-date">--}}
+                            {{--January 30, 2018--}}
+                        {{--</div><!-- .entry-header -->--}}
 
-                        <h3><a href="#">Test</a></h3>
+                        {{--<h3><a href="#">Test</a></h3>--}}
 
-                        <div class="tags-links">
-                            <a href="#">#test</a>
-                            <a href="#">#test</a>
-                            <a href="#">#test</a>
-                            <a href="#">#test</a>
-                        </div><!-- .tags-links -->
-                    </header><!-- .entry-header -->
-                </div><!-- .recent-post-wrap -->
+                        {{--<div class="tags-links">--}}
+                            {{--<a href="#">#test</a>--}}
+                            {{--<a href="#">#test</a>--}}
+                            {{--<a href="#">#test</a>--}}
+                            {{--<a href="#">#test</a>--}}
+                        {{--</div><!-- .tags-links -->--}}
+                    {{--</header><!-- .entry-header -->--}}
+                {{--</div><!-- .recent-post-wrap -->--}}
             </div><!-- .recent-posts -->
 
             <div class="tags-list">

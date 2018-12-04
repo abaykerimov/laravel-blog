@@ -9,6 +9,9 @@ Vue.component('post-list', {
             axios.get('api/post').then(response => {
                 this.posts = response.data;
             });
+        },
+        moment: function (date) {
+            return moment(date).format('MMMM D, YY');
         }
     },
     created() {
@@ -24,7 +27,7 @@ Vue.component('post-list', {
     <div class="col-12 col-lg-9" v-if="posts">
         <div class="content-wrap" v-for="post in posts">
             <header class="entry-header">
-                <div class="posted-date" v-text="post.created_at"></div><!-- .posted-date -->
+                <div class="posted-date" v-text="moment(post.created_at)"></div><!-- .posted-date -->
     
                 <h2 class="entry-title" v-text="post.title"></h2>
     
@@ -45,12 +48,10 @@ Vue.component('post-list', {
             <footer class="entry-footer flex flex-column flex-lg-row justify-content-between align-content-start align-lg-items-center">
             <div class="post-share flex align-items-center order-3 order-lg-1">
                     <label>Share</label>
-                    <social-sharing url="https://vuejs.org/"
-                                title="The Progressive JavaScript Framework"
-                                description="Intuitive, Fast and Composable MVVM for building interactive interfaces."
-                                quote="Vue is a progressive framework for building user interfaces."
-                                hashtags="vuejs,javascript,framework"
-                                twitter-user="vuejs"
+                    <social-sharing :url="'https://aisha.dev.kerimov.kz/posts/' + post.id"
+                                :title="post.title"
+                                :description="post.description"
+                                :hashtags="post.keywords"
                                 inline-template>
                         <div>  
                             <network network="vk">
@@ -79,6 +80,13 @@ Vue.component('post-list', {
             </div><!-- .comments-count -->
         </footer><!-- .entry-footer -->
         </div><!-- .content-wrap -->
+        <!--<div class="pagination">-->
+            <!--<ul class="flex align-items-center">-->
+                <!--<li class="active"><a href="#">1</a></li>-->
+                <!--<li><a href="#">2</a></li>-->
+                <!--<li><a href="#">3</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
     </div>
     `
 });
@@ -122,22 +130,20 @@ Vue.component('post-detail', {
                 <img :src="post.image" alt="">
             </figure><!-- .featured-image -->
     
-            <div class="entry-content" v-html="post.body">
-    
                 <!--<blockquote class="blockquote-text">-->
-                <!--    <p>Nullam non nisi ut dolor pellentesque eleifend. Aliquam commodo vitae risus malesuada varius. Nulla ornare lacus eu elit sollicitudin varius. Nulla aliquet ornare massa id tempor. Sed luctus dui non turpis sodales, ac tristique risus consequat. Donec tincidunt mi a magna rhoncus dapibus. Integer ut lectus euismod</p>-->
+                    <!--<p>Nullam non nisi ut dolor pellentesque eleifend. Aliquam commodo vitae risus malesuada varius. Nulla ornare lacus eu elit sollicitudin varius. Nulla aliquet ornare massa id tempor. Sed luctus dui non turpis sodales, ac tristique risus consequat. Donec tincidunt mi a magna rhoncus dapibus. Integer ut lectus euismod</p>-->
                 <!--</blockquote>&lt;!&ndash; .blockquote-text &ndash;&gt;-->
+            <div class="entry-content" v-html="post.body">
     
             </div><!-- .entry-content -->
     
             <footer class="entry-footer flex flex-column flex-lg-row justify-content-between align-content-start align-lg-items-center">
                 <div class="post-share flex align-items-center order-3 order-lg-1">
                     <label>Share</label>
-                    <social-sharing url="https://vuejs.org/"
+                    <social-sharing :url="'https://aisha.dev.kerimov.kz/posts/' + post.id"
                                 :title="post.title"
                                 :description="post.description"
-                                quote="Vue is a progressive framework for building user interfaces."
-                                hashtags="vuejs,javascript,framework"
+                                :hashtags="post.keywords"
                                 inline-template>
                         <div>  
                             <network network="vk">
@@ -159,9 +165,12 @@ Vue.component('post-detail', {
                     </social-sharing> 
                 </div>
     
-                <div class="comments-count order-1 order-lg-3">
-                    <a href="#">2 Comments</a>
-                </div><!-- .comments-count -->
+                <div class="order-1 order-lg-3">
+                    <a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-heart mr-1"></i></a>
+                </div>
+                <!--<div class="comments-count order-1 order-lg-3">-->
+                    <!--<a href="#">2 Comments</a>-->
+                <!--</div>&lt;!&ndash; .comments-count &ndash;&gt;-->
             </footer><!-- .entry-footer -->
         </div><!-- .content-wrap -->
     </div>

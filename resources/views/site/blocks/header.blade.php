@@ -66,9 +66,7 @@
                         </div><!-- .header-bar-social -->
 
                         <div class="header-bar-search d-md-none">
-                            <form>
-                                <input type="search" placeholder="Search">
-                            </form>
+                            <input type="search" placeholder="Search">
                         </div><!-- .header-bar-search -->
                     </nav><!-- .site-navigation -->
                 </div><!-- .col -->
