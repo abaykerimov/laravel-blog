@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <title>{{ config('app.name') }}</title>
+    <link rel="shortcut icon" href="/images/favicon.ico"/>
     @yield('meta', '')
 
     <!-- CSRF Token -->

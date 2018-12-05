@@ -13,7 +13,7 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-vue@2.0.0-rc.1/dist/bootstrap-vue.css"></link>
-    <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="/images/favicon.ico"/>
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
     <!-- Generated: 2018-04-16 09:29:05 +0200 -->
     <title>Admin</title>

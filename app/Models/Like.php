@@ -11,53 +11,18 @@ class Like extends Model
     use Notifiable;
 
     protected $fillable = [
-        'post_id',
-        'image',
-        'title',
-        'description',
-        'body',
-        'published',
-        'finished',
-        'views'
+        'user_ip',
     ];
 
     protected $dates = [
         'created_at', 'updated_at'
     ];
 
-    protected $casts = [
-        'published' => 'boolean',
-        'finished'  => 'boolean'
-    ];
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    public function children()
-    {
-        return $this->hasMany(Post::class, 'post_id');
-    }
-
-    public function parent()
-    {
-        return $this->belongsTo(Post::class, 'post_id');
-    }
-
     public function user() {
         return $this->belongsTo(User::class);
     }
 
-    public function comments() {
-        return $this->morphMany(Comment::class, 'commentable');
-    }
-
-    public function isPublished() {
-        return (bool)$this->published;
-    }
-    
-    public function isFinished() {
-        return (bool)$this->finished;
+    public function likeable() {
+        return $this->morphTo();
     }
 }

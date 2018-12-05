@@ -22,6 +22,8 @@ Route::group([
             Route::post('{post}/comments', 'CommentController@store');
         });
         Route::apiResource('post', 'PostController')->only(['index', 'show']);
+        Route::apiResource('like', 'LikeController')->only(['store']);
+        Route::get('{post}/like/check', 'LikeController@check');
 
         Route::apiResource('documents', 'Documents\DocumentsController')->only(['index', 'update'])
             ->parameters([
