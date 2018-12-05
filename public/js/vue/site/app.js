@@ -284,9 +284,9 @@ Vue.component('post-comments', {
                                         <a href="#" v-text="moment(comment.created_at)"></a>
                                     </span><!-- .comment-meta -->
 
-                                    <div class="reply">
-                                        <a href="#">Reply</a>
-                                    </div><!-- .reply -->
+                                    <!--<div class="reply">-->
+                                        <!--<a href="#">Reply</a>-->
+                                    <!--</div>&lt;!&ndash; .reply &ndash;&gt;-->
                                 </div><!-- .comment-author -->
 
                                 <p v-text="comment.body"></p>
